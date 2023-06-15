@@ -1,0 +1,35 @@
+{%extends 'header.html'%}
+{%block body%}
+<div class="row">
+  <div class="col-10 offset-md-1">
+    <h2 class="text-center mt-4 mb-3">Admin Information</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col-3">No</th>
+          <th scope="col-3">Email</th>
+          <th scope="col-3">Password</th>
+          <th scope="col-3"></th>
+        </tr>
+      </thead>
+      <tbody>
+      {%for data in getData%}
+      <tr>
+        <th scope="row">{{data.id}}</th>
+        <td>{{data.email}}</td>
+        <td>{{data.password}}</td>
+        <td class="d-flex">
+          <form method="POST" action="/edit">
+            <!-- <input type="hidden" value={{data.email}} name="editValue"> -->
+            <button type="submit" class="btn btn-primary btn-sm mr-3">Edit</button>
+          </form>
+          <form method="POST" action="/delete/{{data.id}}">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+      </tr>
+      {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+{%endblock%}
